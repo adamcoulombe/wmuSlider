@@ -20,7 +20,9 @@
             slideshowSpeed: 7000,
             slideToStart: 0,
             navigationControl: true,
+			navigationContainer:'default',
             paginationControl: true,
+			paginationContainer:'default',
             previousText: 'Previous',
             nextText: 'Next',
             touch: false,
@@ -34,6 +36,8 @@
             /* Variables
             ================================================== */
             var $this = $(this);
+			var navigationContainer = options.navigationContainer == 'default' ? $this : options.navigationContainer;
+			var paginationContainer = options.paginationContainer == 'default' ? $this : options.paginationContainer;
             var currentIndex = options.slideToStart;
             var wrapper = $this.find('.wmuSliderWrapper');
             var slides = $this.find(options.slide);
@@ -112,7 +116,7 @@
                         loadSlide(currentIndex - 1);
                     }
                 });
-                $this.append(prev);
+                navigationContainer.append(prev);
                 
                 var next = $('<a class="wmuSliderNext">' + options.nextText + '</a>');
                 next.click(function(e) {
@@ -124,7 +128,7 @@
                         loadSlide(currentIndex + 1);
                     }
                 });                
-                $this.append(next);
+                navigationContainer.append(next);
             }
             
 
@@ -140,7 +144,7 @@
                         loadSlide(i);
                     });                
                 });
-                $this.append(paginationControl);
+                paginationContainer.append(paginationControl);
             }
             
             
